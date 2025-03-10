@@ -1,0 +1,257 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /*background-color:  #f0f0f0;*/
+  background-color: #f2f2f2;
+
+}
+
+/* 맨 위 회색 부분 */
+.navbar-wrapper {
+  background-color: #f5f5f5;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  padding-right: 60px;
+  color: gray;
+}
+
+.navbar-wrapper a{
+   text-decoration: none;
+  color: #585858;
+
+}
+.navbar-wrapper a:hover{
+    text-decoration: none;
+  color: black;
+
+}
+.ba{
+    padding: 15px;
+}
+
+
+/* let's korail 부분 */
+.navbar {
+  /*background-color: #083B82;*/
+  background-color: #0c3c60;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-top: 2px solid #0397d6;
+  /*height: 15px;*/
+}
+
+.navbar .logo {
+  color: white;
+  /*font-size: 18px;*/
+  font-size: 40px;
+
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* 메뉴 */
+nav {
+  font-weight: bold;
+  display: flex;
+/*  margin: 0;
+  padding: 0;*/
+  /*height: 60px;*/
+  align-items: center;
+  position: relative;
+}
+
+.head_menu {
+  width: 33.3%;
+  padding: 30px;
+  font-size: 25px;
+  background-color: white;
+  text-decoration: none;
+  flex: 1;
+  text-align: center;
+  color: #4A4F5A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*border-right: 1px solid #d3d3d3;*/
+  border: 2px solid black;
+  border-right: 0px;
+
+
+}
+
+
+.head_menu:hover {
+  background-color: #DADADA;
+  height: 100%;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.3px;
+  /*background-color: #00bfff;*/
+}
+
+
+.content{
+    margin-top: 30px;
+   margin-left: 10%;
+    width: 80%;
+
+
+}
+
+/* 열차조회 서울->부산 부분 */
+#train_search_text{
+    text-align: center; /* 텍스트 가운데 정렬 */
+    background-color: #0c3c60;
+    border: 2px solid black;
+    margin-bottom: 30px;
+}
+#train_search_text p{
+    color: lightgray;
+}
+
+#train_search_text p {
+    font-size: 20pt;
+    margin: 10px;
+}
+
+
+
+/*######################## */
+
+#list_date{
+    padding: 10px;
+    /*background-color: white;*/
+    text-align: center;
+}
+
+#departure_station, #arrival_station{
+    display: inline;
+}
+
+#train_list {
+    background-color: lightgray;
+    border: 2px solid #f2f2f2;
+    border-radius: 10px;
+}
+
+
+
+.trains_info{
+    background-color: white;
+/*    display: inline-block;*/
+    display: flex;
+    border-top: 1px solid #f8f8f8;
+    border-radius: 5px;
+    /*padding-top: 10px;*/
+}
+
+
+.train_logo {
+    margin-left: 50px; /* 왼쪽 여백 */
+    margin-right: 40px; /* 오른쪽 여백 */
+    margin-top: 20px;
+    width: 120px;
+    height: 100px;
+
+}
+
+#train_number{
+    margin-top: 55px;
+    font-size: 20pt;
+}
+
+
+.departure_info{
+        margin-left: 17%;
+        font-size: 20pt;
+}
+
+.train_time {
+    font-size: 25pt;
+    font-weight: bold;
+}
+
+.train_time{
+    font-size: 25pt;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.train_station{
+    font-size: 15pt;
+    margin-top: 5px;
+    text-align: center;
+}
+
+
+.arrival_info{
+        margin-left: 30px;
+        font-size: 20pt;
+
+}
+
+.times{
+        font-size:   10pt;
+        text-align: center;
+        width: 100%;
+
+}
+
+.times img{
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.times p{
+    margin-top: 40px;
+}
+
+
+.select{
+    width: 100%;
+    padding-right: 50px;
+    text-align: right;
+}
+
+#price{
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+.select_seat{
+    text-align: right;
+    margin: 10px;
+}
+
+.select_seat p {
+    font-weight: bold;
+    background-color: #d20d5a;
+    /*margin-left: 100px;*/
+    border: 2px solid #d20d5a;
+    border-radius: 7px;
+
+    /*padding: 10px;*/
+    padding: 15px 40px; /* 좌우 패딩 추가 */
+    display: inline-block; /* 텍스트 크기에 맞게 조정 */
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.select_seat button{
+    background-color: transparent;
+    border: none;
+    margin 0px;
+    padding:    0px;
+
+}

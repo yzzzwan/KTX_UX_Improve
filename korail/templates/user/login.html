@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user/signup.css' %}">
+    <script>
+        function guest() {
+      window.location.href = "/user/guest";
+    }
+
+    </script>
+
+</head>
+<body>
+  <div class="navbar">
+  <div class="logo"><a >Let's Korail</a></div>
+  </div>
+
+  <nav>
+  <a href="/" class="head_menu">홈</a>
+  <a href="#" class="head_menu">혜택</a>
+  <a href="#" class="head_menu">나의 티켓</a>
+  </nav>
+  <!-- ################################################################################### -->
+
+  <!-- 상단 네비게이션 -->
+
+
+  <!-- 로그인 폼 -->
+  <div class="form-container">
+    <!-- 네비게이션 탭 (form-container 내부로 이동) -->
+    <nav class="tab-menu">로그인</nav>
+
+    <!-- 회원번호 로그인 폼 -->
+    <div class="form-container2">
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="input-group">
+          <label for="{{ loginForm.username.id_for_label }}">사용자 이름</label>
+            {{ loginForm.username }}
+                {% if loginForm.username.errors %}
+                    <div class="errors">
+                        {% for error in loginForm.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+        </div>
+        <div class="input-group">
+          <label for="{{ loginFormForm..password.id_for_label }}">비밀번호</label>
+            {{ loginForm.password }}
+                {% if loginForm.password.errors %}
+                    <div class="errors">
+                        {% for error in loginForm.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">로그인</button>
+          <button class="btn btn-secondary" onclick="guest()" >비회원으로 이용</button>
+
+      </form>
+    </div>  <!-- 회원번호 로그인 폼 end -->
+
+
+    <!-- 비회원 버튼 -->
+
+  </div>
+
+
+
+    <!-- JS 파일 링크 -->
+    {% load static %}
+  <script src="{% static 'user/signup.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,569 @@
+/* 기본 스타일 */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+
+}
+
+/* 맨 위 회색 부분 */
+.navbar-wrapper {
+  background-color: #f5f5f5;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  padding-right: 60px;
+  color: gray;
+}
+
+.navbar-wrapper a{
+   text-decoration: none;
+  color: #585858;
+
+}
+.navbar-wrapper a:hover{
+    text-decoration: none;
+  color: black;
+
+}
+.ba{
+    padding: 15px;
+}
+
+
+/* let's korail 부분 */
+.navbar {
+  /*background-color: #083B82;*/
+  background-color: #0c3c60;
+  display: flex;
+  justify-content: center;
+  align-items: cent er;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-top: 2px solid #0397d6;
+  /*height: 15px;*/
+}
+
+.navbar .logo {
+  color: white;
+  /*font-size: 18px;*/
+  font-size: 40px;
+
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* 메뉴 */
+nav {
+  font-weight: bold;
+  display: flex;
+/*  margin: 0;
+  padding: 0;*/
+  /*height: 60px;*/
+  align-items: center;
+  position: relative;
+}
+
+.head_menu {
+  width: 33.3%;
+  padding: 30px;
+  font-size: 25px;
+  background-color: white;
+  text-decoration: none;
+  flex: 1;
+  text-align: center;
+  color: #4A4F5A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*border-right: 1px solid #d3d3d3;*/
+  border: 2px solid black;
+  border-right: 0px;
+
+
+}
+
+.head_menu {
+}
+
+.head_menu:hover {
+  background-color: #DADADA;
+  height: 100%;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.3px;
+  /*background-color: #00bfff;*/
+}
+
+/* 콘텐츠 영역 */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 150px);
+  padding: 0 20px;
+}
+
+#ticket_text{
+    font-size: 30pt;
+    /* 상  우 하 좌*/
+    padding: 5px 5px 5px 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.single-content {
+  width: 43%;
+  /*height: 530px;*/
+  background-color: #ffffff;
+  padding: 0px;
+  /*border-radius: 10px;  /* 둥근 모서리 설정 */
+  border-radius: 40px;  /* 둥근 모서리 설정 */
+
+  /*border: 1px solid #d3d3d3;*/
+  border: 3px solid #0c3c60;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;  /* 잘리는 모서리 문제 해결 */
+}
+
+
+/* 공통 레이어 */
+.layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px; /* 둥근 모서리 설정 */
+  height: 60px; /* 고정 높이 */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.divider {
+  height: 1px;
+  background-color: #d3d3d3;
+  margin-bottom: 10px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+/* 편도와 왕복 버튼 */
+.ticket-btn {
+  width: 50%;
+  height: 100%;
+  padding: 0;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.ticket-btn:hover {
+  background-color: gray;
+  border: none;
+  border-radius: 10px 10px 0 0;
+}
+
+/* 선택된 상태 (클릭된 버튼에 적용) */
+.ticket-btn.active {
+  background-color: #083b82;
+  color: white;
+  border: 2px solid #083b82;
+}
+
+.location-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* 출발지와 도착지 레이아웃 */
+.station-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;   /* 수직 정렬 */
+  justify-content: center;  /* 수직 가운데 정렬 */
+  align-items: center;      /* 수평 가운데 정렬 */
+  height: 100%;             /* 부모 높이를 100%로 설정하여 수직 가운데 맞추기 */
+}
+
+/* 출발지/도착지 라벨 */
+/*.location-label {
+  font-size: 20px;
+  color: #666;
+  marin-bottom: 10px;
+}*/
+
+/* 출발지,도착지, 가는날, 인원 라벨 */
+.input_label {
+  font-size: 20px;
+  /*color: #666;*/
+  /*marin-bottom: 5px;*/
+}
+
+/*.location-dropdown {
+  background-color: none;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: 600;
+  width: 115px;
+  color: #b1b1b1;
+  font: lighter;
+  text-align: center;
+  border: 3px solid #000;
+  border-radius: 7px;
+
+  margin-top: 10px;
+
+  padding: 20px 10px 20px 10px;
+
+}*/
+.input_container {
+  background-color: none;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: 600;
+  /*width: 115px;*/
+  color: #b1b1b1;
+  font: lighter;
+  text-align: center;
+  margin-top: 10px;
+/*상  시계*/
+  padding: 20px 40px 0px 40px;
+
+}
+
+
+/*.location-dropdown:hover {
+  border: none;
+  border-radius: 10px;
+  transition: border-radius 0.3s ease;
+}*/
+
+/* 선택된 지역의 텍스트 색상 변경 */
+/*.station-container span {
+  color: #b1b1b1;
+  font-size: 26px;
+  font-weight: 600;
+}*/
+
+/* 모달 관련 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white; /* 배경을 흰색으로 설정 */
+  animation: slideUp 0.3s ease-out; /* 애니메이션 속도와 타이밍 함수 수정 */
+}
+
+/* 지역 버튼 */
+.region-btn {
+  background-color: #eeeeee;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.region-btn:hover {
+  background-color: #b1b1b1;
+}
+
+/* 닫기 버튼 */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;   /* 버튼 크기 */
+  height: 24px;  /* 버튼 크기 */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.close-btn::before,
+.close-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background-color: #333; /* X 색상 */
+  border-radius: 2px;
+  transform-origin: center;
+}
+
+.close-btn::before {
+  transform: translate(-50%, -50%) rotate(45deg); /* 45도 회전 */
+}
+
+.close-btn::after {
+  transform: translate(-50%, -50%) rotate(-45deg); /* -45도 회전 */
+}
+
+.switch-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.switch-btn {
+  /*background-color: #f0f0f0;*/
+
+  border: none;
+  padding: 10px;
+  /*cursor: pointer;*/
+  /*font-size: 16px;*/
+  font-size: 60px;
+  /*margin: 0 125px; /* 버튼 간격 */
+  margin: 0 100px; /* 버튼 간격 */
+
+}
+
+/* 날짜 라벨 */
+.date-container {
+  gap: 180px; /* 가는 날과 오는 날 사이의 간격 설정 */
+}
+
+.date-row {
+  display: flex;
+  gap: 60px; /* 가는 날과 오는 날 사이의 간격 설정 */
+}
+
+.date-label {
+  font-size: 20px; /* 소제목의 글씨 크기 */
+  color: #666; /* 소제목의 글씨 색깔 */
+  font-weight: medium; /* 소제목을 굵게 */
+  line-height: 1.5; /* 줄 간격을 조정 */
+  margin-bottom: 8px; /* 소제목과 날짜 사이의 간격 */
+}
+
+/* 날짜 텍스트 */
+#date-value {
+  font-size: 20px; /* 날짜 글씨 크기 */
+  font-weight: normal; /* 날짜는 기본 굵기 */
+  color: #083B82; /* 날짜 글씨 색깔 */
+}
+
+.separator {
+  display: none;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+  font-size: 40px; /* '-' 기호 크기 */
+  font-weight: 100; /* '-' 기호 굵게 */
+}
+
+#oneWayDate {
+  text-align: center; /* 텍스트 가운데 정렬 */
+  flex-direction: column; /* 레이블과 날짜를 세로로 배치 */
+  align-items: center; /* 가운데 정렬 */
+}
+
+/* 승객수 라벨 스타일 */
+.passenger-label {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 1px;
+}
+
+/* 승객수 선택 텍스트 */
+.passengerCount {
+  background: none; /* 배경색 제거 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer; /* 클릭 가능한 상태 */
+  font-size: 26px; /* 글씨 크기 */
+  font-weight: 600; /* 글씨 두께 */
+  color: #b1b1b1; /* 글씨 색상 */
+  padding: 10; /* 여백 제거 */
+  display: inline; /* 텍스트만 클릭 가능 */
+  text-align: center; /* 텍스트 정렬 */
+}
+
+/* 인원 선택 슬라이드 바 */
+.passenger-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+/* 슬라이드 바 내용 */
+.passenger-bar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 승객 수 버튼 */
+.passenger-btn {
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.passenger-btn:hover {
+  background-color: #e1e1e1;
+}
+
+/* 승객 수 선택 컨트롤 */
+.passenger-control {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* 레이블 스타일 */
+.passenger-control label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+/* 슬라이드 바 닫기 버튼 */
+.close-passenger-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.close-passenger-btn:hover {
+  background-color: #ff5c4d;
+}
+
+/* 적용 버튼 */
+.apply-passenger-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #083B82;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.apply-passenger-btn:hover {
+  background-color: #062c5f;
+}
+
+/* 작은 라벨 스타일 */
+.small-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* 레이블 스타일 */
+.passenger-control label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+/* 슬라이드 바 닫기 버튼 */
+.close-passenger-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.close-passenger-btn:hover {
+  background-color: #ff5c4d;
+}
+
+/* 승차권 조회 버튼 */
+.search-btn {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #083B82;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: #052757;
+}
+
+/* 슬라이드 애니메이션 */
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#submit_div {
+  background-color: #cde0ee;
+  border: 0px;
+  font-size: 25px;
+    display: flex;              /* 플렉스박스 활성화 */
+    justify-content: center;    /* 가로 중앙 정렬 */
+    align-items: center;        /* 세로 중앙 정렬 */
+    height: 100px;              /* 높이 지정 (필요에 따라 수정) */
+    text-align: center;         /* 텍스트 정렬 */
+    cursor: pointer;
+    width: 100%
+  }
+
+.input_value{
+  color: black;
+  font-size: 35px;
+  font-weight: 550;
+}

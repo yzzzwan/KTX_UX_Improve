@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>코레일</title>
+ <script>
+         function tt(){
+            window.location.href = "ticket/t";
+         }
+     </script>
+  <!-- CSS 파일 링크 -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'home/home.css' %}">
+</head>
+<body>
+  <!--상단 로그인 부분-->
+  <div class="navbar-wrapper">
+    {% if request.user.is_authenticated %}
+    <span> 안녕하세요. {{ request.user }}님</span>
+    <span class="ba">|</span>
+    <a href="user/logout">로그아웃</a>
+
+    {% else %}
+    <a href="user/login">로그인</a>
+    <span class="ba">|</span>
+    <a href="user/signup">회원가입</a>
+    {% endif %}
+  </div>
+
+  <!-- 로고 부분  -->
+  <div class="navbar" onclick="tt()">
+    <div class="logo"><a>Let's Korail</a></div>
+  </div>
+
+  <!-- 상단 메뉴바 -->
+  <nav>
+    <a href="/" class="head_menu">홈</a>
+    <a href="#" class="head_menu">혜택</a>
+    <a href="myticket" class="head_menu">나의 티켓</a>
+  </nav>
+
+  <div class="content">
+    <!-- 승차권 예매 라운드 박스 -->
+    <div class="single-content">
+      <p id="ticket_text">승차권 예매</p>
+      <div class="divider"></div>
+
+      <form method="POST">
+        {% csrf_token %}
+
+      <!-- 출발지와 도착지 선택 -->
+      <div class="layer" style="height: 140px;">
+        <div class="station-container">
+          <div class="input_label">출발지</div>
+          <div class="input_container" onclick="openLocationSelect('departure')">
+            <span id="departureLocation" class="input_value">동해</span>
+            <input type="hidden" id="DepartureStation_Input" name="DepartureStation_Input" value="동해">
+          </div>
+        </div>
+
+        <!-- 화살표 -->
+        <div class="switch-btn-container">
+          <!-- <button class="switch-btn" onclick="switchLocations()">⇄</button> -->
+          <p class="switch-btn">→</p>
+        </div>
+
+        <div class="station-container">
+          <div class="input_label">도착지</div>
+          <div class="input_container" onclick="openLocationSelect('arrival')">
+            <span id="arrivalLocation" class="input_value">강릉</span>
+            <input type="hidden" id="ArrivalStation_Input" name="ArrivalStation_Input" value="강릉">
+          </div>
+        </div>
+      </div>
+      <!--  end 출발지와 도착지 선택    -->
+
+      <div class="divider"></div>
+
+    <!-- 날짜 선택 -->
+    <div class="layer" style="height: 140px;">
+      <div class="date-row">
+        <!-- 가는 날 -->
+        <div id="oneWayDate" class="date-container">
+          <div class="input_label">가는 날</div>
+            <div class="input_container"  onclick="openCalendarModal('departure')" value="">
+              <span id="Departure_Date" class="input_value">YYYY년 MM월 DD일 (요일)</span>
+          </div>
+            <input type="hidden" id="Departure_Date_Input" name="Departure_Date_Input" value="">
+        </div>
+      </div>
+    </div>
+
+    <!-- 달력 모달 -->
+    <div id="calendarModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="calendar-header">
+          <button type="button" onclick="closeCalendarModal()">닫기</button>
+          <h3>날짜 선택</h3>
+        </div>
+        <div class="calendar-body">
+          <!-- 달력 구현 (브라우저의 기본 날짜 선택기 사용) -->
+          <input type="date" id="calendarDate">
+        </div>
+        <button type="button" onclick="applySelectedDate()">확인</button>
+      </div>
+    </div>
+
+    <!-- 달력 end -->
+
+  <div class="divider"></div>
+
+    <!-- 승객 인원 선택 -->
+    <div class="layer" style="height: 140px;">
+      <div class="station-container">
+        <!-- 승객수 소제목 -->
+        <div class="input_label">승객수</div>
+        <!-- 인원 선택 버튼 -->
+        <div class="input_container">
+        <!--    <button id="open-passenger-btn" class="passengerCount" onclick="openPassengerBar()">-->
+          <div id="open-passenger-btn" class="passengerCount" onclick="openPassengerBar()">
+            <span id="selected-passenger-text"  class="input_value" >어른 1</span>
+          </div>
+          <input type="hidden" id="Passenger_CNT_Input" name="Passenger_CNT_Input" value="1,0,0,0">
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <button id="submit_div" type="submit">승차권 조회</button>
+        </form>
+
+
+
+
+
+    <!-- 인원 선택 슬라이드 바 -->
+    <div id="passenger-bar" class="passenger-bar">
+      <div class="passenger-bar-content">
+
+      <!-- 어른 선택 -->
+      <div class="passenger-control">
+        <label>어른</label>
+        <button type="button" class="passenger-btn" onclick="decreaseAdults()">-</button>
+        <span id="adult-count">1</span>
+        <button class="passenger-btn" onclick="increaseAdults()">+</button>
+      </div>
+
+    <!-- 아이 선택 -->
+    <div class="passenger-control">
+      <label>아이</label>
+      <button type="button" class="passenger-btn" onclick="decreaseChildren()">-</button>
+      <span id="child-count">0</span>
+      <button type="button" class="passenger-btn" onclick="increaseChildren()">+</button>
+    </div>
+
+    <!-- 유아 선택 -->
+    <div class="passenger-control">
+      <label>유아</label>
+      <button type="button" class="passenger-btn" onclick="decreaseInfants()">-</button>
+      <span id="infant-count">0</span>
+      <button type="button" class="passenger-btn" onclick="increaseInfants()">+</button>
+    </div>
+
+    <!-- 노인 선택 -->
+    <div class="passenger-control">
+      <label>노인</label>
+      <button type="button" class="passenger-btn" onclick="decreaseElderly()">-</button>
+      <span id="elderly-count">0</span>
+      <button type="button" class="passenger-btn" onclick="increaseElderly()">+</button>
+    </div>
+
+    <!-- 적용 버튼 -->
+    <button type="button" class="apply-passenger-btn" onclick="applyPassengerCount()">적용</button>
+
+    <button type="button" class="close-passenger-btn" onclick="togglePassengerBar()">닫기</button>
+  </div>
+</div>
+
+ <div class="divider" style="padding: 0; margin: 0;"></div>
+
+
+  <!-- single content end div -->
+
+   </div>
+
+
+
+   <!-- 여기 위 까지 태그들 들여쓰기 정리랑 div 끝나는 태그 (</div>) 뒤에는 어떤 div 태그가 끝난건지 적어주세요.-->
+
+
+  <!-- 지역 선택 모달 -->
+  <div id="locationSelectModal" class="modal">
+    <div class="modal-content">
+       <!-- 검색창 -->
+    <div class="navbar-wrapper" style="height: 30px; display: flex; align-items: center; background-color: #f5f5f5; padding: 5px;">
+      <input type="text" id="searchBar" placeholder="지역 검색..." oninput="filterLocations()" style="width: 100%; height: 100%; padding: 5px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+    <!-- 지역 선택 버튼들 -->
+    <div id="region-selector" class="region-selector" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 10px;">
+      <button class="region-btn" data-value="seoul">서울</button>
+      <button class="region-btn" data-value="busan">부산</button>
+      <button class="region-btn" data-value="daejeon">대전</button>
+      <button class="region-btn" data-value="daegu">대구</button>
+      <button class="region-btn" data-value="gwangju">광주</button>
+      <button class="region-btn" data-value="incheon">인천</button>
+      <button class="region-btn" data-value="suwon">수원</button>
+      <button class="region-btn" data-value="jeonju">전주</button>
+      <button class="region-btn" data-value="taebini">태빈이집</button>
+      <button class="region-btn" data-value="ulsan">울산</button>
+      <button class="region-btn" data-value="pohang">포항</button>
+      <button class="region-btn" data-value="yeosu">여수</button>
+      <button class="region-btn" data-value="jeju">제주</button>
+      <button class="region-btn" data-value="cheonan">천안</button>
+      <button class="region-btn" data-value="cheongju">청주</button>
+      <button class="region-btn" data-value="gumi">구미</button>
+      <button class="region-btn" data-value="chuncheon">춘천</button>
+      <button class="region-btn" data-value="kimpo">김포</button>
+      <button class="region-btn" data-value="mokpo">목포</button>
+      <button class="region-btn" data-value="anyang">안양</button>
+    </div>
+<!-- 닫기 버튼 -->
+    <button onclick="closeLocationSelect()" style="margin: 10px; padding: 10px; background-color: #083B82; color: white; border: none; border-radius: 5px; cursor: pointer;">닫기</button>
+  </div>
+</div>
+  </div>
+  <!-- JS 파일 링크 -->
+    {% load static %}
+  <script src="{% static 'home/home.js' %}"></script>
+
+
+
+</body>
+</html>

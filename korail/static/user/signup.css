@@ -1,0 +1,376 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /*background-color:  #f0f0f0;*/
+  background-color: #f2f2f2;
+
+}
+
+//* 맨 위 회색 부분 */
+.navbar-wrapper {
+  background-color: #f5f5f5;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  padding-right: 60px;
+  color: gray;
+}
+
+.navbar-wrapper a{
+   text-decoration: none;
+  color: #585858;
+
+}
+.navbar-wrapper a:hover{
+    text-decoration: none;
+  color: black;
+
+}
+.ba{
+    padding: 15px;
+}
+
+
+/* let's korail 부분 */
+.navbar {
+  /*background-color: #083B82;*/
+  background-color: #0c3c60;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-top: 2px solid #0397d6;
+  /*height: 15px;*/
+}
+
+.navbar .logo {
+  color: white;
+  /*font-size: 18px;*/
+  font-size: 40px;
+
+  font-weight: 800;
+  font-style: italic;
+}
+
+/* 메뉴 */
+nav {
+  font-weight: bold;
+  display: flex;
+/*  margin: 0;
+  padding: 0;*/
+  /*height: 60px;*/
+  align-items: center;
+  position: relative;
+}
+
+.head_menu {
+  width: 33.3%;
+  padding: 30px;
+  font-size: 25px;
+  background-color: white;
+  text-decoration: none;
+  flex: 1;
+  text-align: center;
+  color: #4A4F5A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*border-right: 1px solid #d3d3d3;*/
+  border: 2px solid black;
+  border-right: 0px;
+
+
+}
+
+
+.head_menu:hover {
+  background-color: #DADADA;
+  height: 100%;
+}
+
+nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.3px;
+  /*background-color: #00bfff;*/
+}
+
+
+
+
+ /* form-container 내부의 네비게이션 탭 */
+ .tab-menu {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-top: 10px;
+
+  padding-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #666;
+  transition: background-color 0.3s ease, border-bottom 0.3s ease;  /* 배경색 변화 애니메이션 */
+}
+
+.tab.active {
+  color: #005bac;
+  border-bottom: 2px solid #005bac;
+}
+
+.tab:hover {
+  background-color: #f1f1f1; /* 탭 호버 시 배경색 */
+}
+
+
+/* 로그인 폼 */
+.form-container {
+  margin: 20px auto;
+  margin-top: 70px;
+  max-width: 400px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* 로그인 폼 */
+.form-container2 {
+  margin: 20px auto;
+  margin-top: 5px;
+  max-width: 400px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* 입력 필드 */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* 체크박스 */
+.checkbox-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* 버튼 스타일 */
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 호버 효과 */
+}
+
+/* 기본 버튼: Primary */
+.btn-primary {
+  background-color: #005bac;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #003d7a; /* Primary 버튼 호버 색상 */
+}
+
+/* Secondary 버튼 */
+.btn-secondary {
+  margin: 20px auto;
+  display: block;
+  max-width: 400px;
+  background: lightgray;
+  color: #333;
+  padding: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: darkgray; /* Secondary 버튼 호버 색상 */
+}
+
+
+
+/* 소셜 로그인 버튼 */
+.social-login {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.social-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.social-btn:hover {
+  transform: scale(1.1); /* 크기 확대 */
+}
+
+/* 카카오 버튼 */
+.kakao-btn {
+  background-image: url('kakao-icon.png'); /* 카카오 이미지 */
+  background-color: #fee500;
+}
+
+.kakao-btn:hover {
+  background-color: #f7c600; /* 카카오 버튼 호버 색상 */
+}
+
+/* 네이버 버튼 */
+.naver-btn {
+  background-image: url('naver-icon.png'); /* 네이버 이미지 */
+  background-color: #03c75a;
+}
+
+.naver-btn:hover {
+  background-color: #029f45; /* 네이버 버튼 호버 색상 */
+}
+
+/* 구글 버튼 */
+.google-btn {
+  background-image: url('google-icon.png'); /* 구글 이미지 */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+}
+
+.google-btn:hover {
+  background-color: #f5f5f5; /* 구글 버튼 호버 색상 */
+}
+
+/* 지문 버튼 */
+.fingerprint-btn {
+  background-image: url('fingerprint-icon.png'); /* 지문 이미지 */
+  background-color: #4a4a4a;
+}
+
+.fingerprint-btn:hover {
+  background-color: #3a3a3a; /* 지문 버튼 호버 색상 */
+}
+
+/* 하단 추가 링크 */
+.additional-links {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.additional-links a {
+  font-size: 12px;
+  color: #005bac;
+  text-decoration: none;
+}
+
+.additional-links a:hover {
+  text-decoration: underline;
+}
+
+
+    /* 모달 전체 배경 */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    /* 숨김 처리 */
+    .modal.hidden {
+      display: none;
+    }
+
+    /* 모달 컨텐츠 */
+    .modal-content {
+      background-color: #ffffff;
+      width: 500px;
+      max-width: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    /* 모달 헤더 */
+    .modal-header h2 {
+      font-size: 20px;
+      color: #083B82;
+      margin-bottom: 10px;
+    }
+
+    /* 모달 본문 */
+    .modal-body p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    /* 강조 텍스트 */
+    .modal-body p b {
+      color: red;
+    }
+
+    /* 버튼 스타일 */
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn-link {
+      background: none;
+      border: none;
+      color: #005bac;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-link:hover {
+      color: #003d7a;
+    }

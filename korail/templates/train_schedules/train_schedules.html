@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Schedules</title>
+    {% load static %}
+  <link rel="stylesheet" href="{% static 'train_schedules/train_schedules.css' %}">
+</head>
+<body>
+    <!--상단 로그인 부분-->
+  <div class="navbar-wrapper">
+    {% if request.user.is_authenticated %}
+    <span> 안녕하세요. {{ request.user }}님</span>
+    <span class="ba">|</span>
+    <a href="user/logout">로그아웃</a>
+    {% else %}
+    <a href="user/login">로그인</a>
+    <span class="ba">|</span>
+    <a href="user/signup">회원가입</a>
+    {% endif %}
+  </div>
+
+
+
+    <div class="navbar">
+        <div class="logo"><a >Let's Korail</a></div>
+    </div>
+
+    <nav>
+        <a href="/" class="head_menu">홈</a>
+        <a href="#" class="head_menu">혜택</a>
+        <a href="#" class="head_menu">나의 티켓</a>
+    </nav>
+    <!-- ################################################################################### -->
+
+    <div class="content">
+        <div id="train_search_text">
+            <p style="font-weight: bold;">열차 조회 </p>
+            <p><span id="department">{{ departure_station }}</span> → <span id="arrive">{{ arrival_station }}</span></p>
+        </div>
+
+        <div id="train_list">
+            <!-- 날짜부분 -->
+            <div id="list_date">
+                <p id="date">{{ departure_date }}</p>
+            </div>
+
+            <!-- 조회된 열차 수 만큼 반복 -->
+            {% for schedule in common_schedules %}
+                <div class="trains_info">
+                    <!-- 열차 종류 로고 -->
+<!--                    <img src="image/ktx_logo.png" class="train_logo">-->
+                    <img class="train_logo"
+                         src="{% if schedule.train_type == 'ITX-마음' %}
+                                    {% static 'image/logo_itx-maum.png' %}
+                               {% elif schedule.train_type == 'ITX-새마을' %}
+                                    {% static 'image/logo_itx-saemaul.png' %}
+                               {% elif schedule.train_type == '무궁화' %}
+                                    {% static 'imag/logo_mugunghwa.png' %}
+                               {% elif schedule.train_type == '누리로' %}
+                                    {% static 'image/logo_nuriro.png' %}
+                               {% else %}
+                                    {% static 'image/ktx_logo.png' %}
+                               {% endif %}"
+                    />
+                    <!-- 열차번호 -->
+                    <p id="train_number">{{ schedule.train_number }}</p>
+
+                    <div class="departure_info">
+                        <p class="train_time">{{ schedule.departure_time }}</p>
+                        <p class="train_station">{{ schedule.arrival_time }}</p>
+                    </div>
+
+                    <div class="times">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+                        <img src="{% static 'image/arrow01.png' %}" style="margin-left: 30px;">
+
+                        <p class="time_required">{{ schedule.time_required }} 소요</p>
+                    </div>
+
+                    <div class="arrival_info">
+                        <p class="train_time">{{ schedule.arrival_time }}</p>
+                        <p class="train_station">{{ schedule.arrival_station }}</p>
+                    </div>
+
+                    <div class="select">
+                        <p><span>총 </span><span id="price">{{ price }}원</span></p>
+                        <div>
+                            <div class="select_seat">
+<!--                                <p>좌석선택</p>-->
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="Train_Number" value="{{ schedule.train_number }}">
+                                    <input type="hidden" name="Train_Type" value="{{ schedule.train_type }}">
+                                    <input type="hidden" name="Departure_Time" value="{{ schedule.departure_time }}">
+                                    <input type="hidden" name="Arrival_Time" value="{{ schedule.arrival_time }}">
+                                    <input type="hidden" name="Departure_schedule_id" value="{{ schedule.departure_schedule_id }}">
+                                    <input type="hidden" name="Arrival_schedule_id" value="{{ schedule.arrival_schedule_id }}">
+                                    <button> <p>좌석선택</p></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            {% empty %}
+                <p>해당 조건에 맞는 열차가 없습니다.</p>
+            {% endfor %}
+        </div> <!-- train list end -->
+    </div> <!-- content end -->
+</body>
+</html>

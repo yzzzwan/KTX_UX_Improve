@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4열 2행테이블</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user/user_ticket.css' %}">
+</head>
+<body>
+  <!-- 네비게이션 바 -->
+  <div class="navbar-wrapper"></div>
+  <div class="navbar">
+    <div class="logo">Let's Korail</div>
+  </div>
+
+  <nav>
+    <a href="/" class="head_menu">홈</a>
+    <a href="" class="head_menu">혜택</a>
+    <a href="" class="head_menu">나의 티켓</a>
+  </nav>
+
+  <!-- 메뉴탭 밑에 전체 화면을 감싸는 컨테이너 -->
+  <div class="container">
+
+            <div class="ticket-info">
+                <!-- 출발역, 도착역, 출발시간, 도착시간, 열차번호, 좌석 정보 출력 -->
+                <p><span class="label">출발역:</span> <span class="value">동해</span></p>
+                <p><span class="label">도착역:</span> <span class="value">강릉</span></p>
+                <p><span class="label">출발 시간:</span> <span class="value">07:31</span></p>
+                <p><span class="label">도착 시간:</span> <span class="value">08:14</span></p>
+                <p><span class="label">열차 번호:</span> <span class="value">누리로-172</span></p>
+                <p><span class="label">좌석:</span> <span class="value">1호차 1A</span></p>
+            </div>
+
+
+
+</div>
+
+
+</body>
+</html>

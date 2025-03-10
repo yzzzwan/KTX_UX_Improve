@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결제</title>
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'ticket/final_check.css' %}">
+
+  <script>
+    // 결제 완료 팝업 처리
+    function showPaymentComplete() {
+      alert("결제가 완료되었습니다.");
+    }
+
+    // 예약 취소 시 홈으로 이동
+    function cancelReservation() {
+      const isConfirmed = confirm("예약을 취소하시겠습니까?");
+
+        // 예를 선택한 경우
+        if (isConfirmed) {
+            window.location.href = "/";  // 홈 페이지로 리디렉션 (예약 취소 후)
+        }
+    }
+  </script>
+</head>
+<body>
+  <!--상단 로그인 부분-->
+  <div class="navbar-wrapper">
+    {% if request.user.is_authenticated %}
+    <span> 안녕하세요. {{ request.user }}님</span>
+    <span class="ba">|</span>
+    <a href="user/logout">로그아웃</a>
+
+    {% else %}
+    <a href="user/login">로그인</a>
+    <span class="ba">|</span>
+    <a href="user/signup">회원가입</a>
+    {% endif %}
+  </div>
+
+    <div class="navbar">
+    <div class="logo"><a>Let's Korail</a></div>
+    </div>
+
+    <nav>
+    <a href="/" class="head_menu">홈</a>
+    <a href="#" class="head_menu">혜택</a>
+    <a href="#" class="head_menu">나의 티켓</a>
+    </nav>
+    <!-- ################################################################################### -->
+
+  <!-- 결제창 -->
+  <div class="payment-container">
+    <!-- 결제 헤더 -->
+    <div class="payment-header">
+      <span>승차권 확인</span>
+    </div>
+
+    <!-- 날짜와 열차 정보 -->
+    <div class="payment-info">
+      <p class="date">{{ departure_date }}</p>
+      <p class="train"><span>KTX</span> <span>172</span></p>
+      <p class="route">
+        <span class="departure">{{ departure_station }}</span>
+        <span class="arrow">→</span>
+        <span class="arrival">{{ arrival_station }}</span>
+      </p>
+      <p class="time">{{ departure_time }} → {{ arrival_time }}</p>
+      <p class="seat">{{ room_num }}호차 {{ seat_num }}</p>
+    </div>
+
+    <!-- 가격 정보 -->
+    <div class="price-section">
+      <p class="price-label">승차권</p>
+      <p class="price">{{ price }}원</p>
+    </div>
+
+    <!-- 하단 예약 정보 -->
+    <div class="footer">
+      <div class="reservation">
+        <span>총 1개</span>
+        <span class="total-price">{{ price }}원</span>
+      </div>
+      <div class="footer-buttons">
+        <button class="cancel-btn" onclick="cancelReservation()">예약취소</button>
+        <form method="POST">
+          {% csrf_token %}
+          <button class="next-btn" onclick="showPaymentComplete()">다음</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

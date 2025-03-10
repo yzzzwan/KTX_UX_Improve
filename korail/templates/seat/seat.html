@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'seat/seat.css' %}">
+
+</head>
+<body>
+     <!--상단 로그인 부분-->
+  <div class="navbar-wrapper">
+    {% if request.user.is_authenticated %}
+    <span> 안녕하세요. {{ request.user }}님</span>
+    <span class="ba">|</span>
+    <a href="user/logout">로그아웃</a>
+
+    {% else %}
+    <a href="user/login">로그인</a>
+    <span class="ba">|</span>
+    <a href="user/signup">회원가입</a>
+    {% endif %}
+  </div>
+    <div class="navbar">
+    <div class="logo"><a>Let's Korail</a></div>
+    </div>
+
+    <nav>
+    <a href="/" class="head_menu">홈</a>
+    <a href="#" class="head_menu">혜택</a>
+    <a href="#" class="head_menu">나의 티켓</a>
+    </nav>
+    <!-- ################################################################################### -->
+
+    <!-- 좌석 선택 부분 -->
+    <div class="content">
+        <div id="seat_text">
+            <p>좌석 선택</p>
+        </div>
+
+        <div id="seat_container">
+            <div class="instructions">
+                <p>1. 원하는 좌석을 선택하여 주십시오.</p>
+                <p>2. 선택 가능한 좌석은 <span class="available">예약가능</span> 표시로 선택 가능합니다.</p>
+                <p>3. 선택한 좌석을 다시 클릭하면 취소됩니다.</p>
+            </div>
+
+            <!-- 호차 선택  -->
+            <div id="rooms">
+                <div class="select_room">
+                    <button type ="button" class="room_btn active">1호차</button>
+                </div>
+                <div class="select_room">
+                    <button type ="button" class="room_btn">2호차</button>
+                </div>
+                <div class="select_room">
+                    <button type ="button" class="room_btn">3호차</button>
+                </div>
+            </div> <!-- rooms end -->
+
+            <div class="seat-info">
+                <p><span class="route">{{ departure_station }}역 ➝ {{ arrival_station }}역</span> {{ train_type }}{{ train_number }}({{ room_num }}호차)에 대한 좌석 정보입니다.</p>
+                <p>총 승객 인원: {{ total_psg }}명</p>
+            </div>
+
+             <div class="legend">
+                <div class="legend-item">
+                    <!-- <div class="box unavailable"></div> 예약불가 -->
+                    <img src="{% static 'image/no_seat.gif' %}"> 예약불가
+                </div>
+                <div class="legend-item">
+                    <!-- <div class="box available-forward"></div> 예약가능 -->
+                    <img src="{% static 'image/seat.gif' %}"> 예약가능
+                </div>
+                <div class="legend-item">
+                    <!-- <div class="box available-forward"></div> 예약가능 -->
+                    <img src="{% static 'image/select_seat.gif' %}"> 선택한 좌석
+                </div>
+            </div>
+
+            <div class="seats">
+
+                <div class="row">
+                        {% for status, seat_num in seats_data1 %}
+                        <button type ="button" class="seat_btn {% if not status %}disabled{% endif %}">
+                            <div class="seat">
+                                {% if status %}
+                                    <img src="{% static 'image/seat.gif' %}" alt="{{ seat_num }}">
+                                {% else %}
+                                    <img src="{% static 'image/no_seat.gif' %}" alt="{{ seat_num }}">
+                                {% endif %}
+                                <div class="label">{{ seat_num }}</div> <!-- 좌석 번호 표시 -->
+                            </div>
+                        </button>
+                    {% endfor %}
+                </div>
+
+                <div class="row">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                    <img src="{% static 'image/btn_next.png' %}" alt="----">
+                </div>
+
+                <div class="row">
+                        {% for status, seat_num in seats_data2 %}
+                        <button type ="button" class="seat_btn {% if not status %}disabled{% endif %}">
+                            <div class="seat">
+                                {% if status %}
+                                    <img src="{% static 'image/seat.gif' %}" alt="{{ seat_num }}">
+                                {% else %}
+                                    <img src="{% static 'image/no_seat.gif' %}" alt="{{ seat_num }}">
+                                {% endif %}
+                                <div class="label">{{ seat_num }}</div> <!-- 좌석 번호 표시 -->
+
+                            </div>
+                        </button>
+                    {% endfor %}
+            </div>
+        </div> <!-- seat_container end -->
+            <div id="footer">
+                <form method="POST">
+                    {% csrf_token %}
+                    <button>
+                        <p>좌석을 선택해주세요</p>
+                        <input type="hidden" id="Room_Num" name="Room_Num" value="{{ room_num }}">
+                        <input type="hidden" id="Seat_num" name="Seat_num" value="">
+
+                    </button>
+                </form>
+            </div>
+    </div> <!-- content end -->
+
+
+
+        {% load static %}
+    <script src="{% static 'seat/seat.js' %}"></script>
+    <script>
+    // 선택된 좌석 갯수를 세는 함수
+    function countSelectedSeats() {
+        const selectedSeatImages = document.querySelectorAll('img[src="{% static 'image/select_seat.gif' %}"]');
+        return selectedSeatImages.length;
+    }
+
+    // 좌석 선택 시 이미지 변경 기능
+    const seatButtons = document.querySelectorAll('.seat_btn');
+    let selectedSeatAlts = new Set();
+    seatButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const seatImage = button.querySelector('.seat img');
+
+            if (button.classList.contains('disabled')) return; // 예매 불가능한 좌석은 이벤트 무시
+            const seatAlt = seatImage.alt;
+            // 현재 src가 선택 상태인지 확인
+            if (seatImage.src.includes("{% static 'image/select_seat.gif' %}")) {
+                // 이미 선택된 좌석이면 원래 이미지로 복원
+                seatImage.src = "{% static 'image/seat.gif' %}";
+                selectedSeatAlts.delete(seatAlt); // 값 지우기
+                updateFooterText("좌석을 선택해주세요", "#585858");
+            } else {
+                // 선택되지 않은 좌석은 선택된 이미지로 변경
+                selectedSeats = countSelectedSeats();
+
+                // 총 승객 수만큼 좌석이 선택되면 예약하기 버튼 활성화
+                if (selectedSeats - 1 != {{total_psg}}) {
+                    seatImage.src = "{% static 'image/select_seat.gif' %}";
+                    // alt 값 가져오기
+                    selectedSeatAlts.add(seatAlt); // 값 추가하기
+                }
+            }
+
+            selectedSeats = countSelectedSeats();
+
+            // 총 승객 수만큼 좌석이 선택되면 예약하기 버튼 활성화
+            if (selectedSeats - 1 == {{total_psg}}) {
+                updateFooterText("좌석선택완료", "#0c3c60");
+                const selectedSeatAltsString = Array.from(selectedSeatAlts).join(',');
+                 const seatnumElement = document.getElementById('Seat_num');
+                 seatnumElement.value = selectedSeatAltsString;
+                 console.log(seatnumElement.value)
+            }
+<!--            console.log(Array.from(selectedSeatAlts));-->
+
+        });
+    });
+
+    // Footer 텍스트와 배경색 업데이트 함수
+    function updateFooterText(text, bgColor) {
+        const pElement = document.querySelector("#footer button p");
+        pElement.textContent = text;
+        pElement.style.backgroundColor = bgColor;
+    }
+    </script>
+
+
+</body>
+</html>

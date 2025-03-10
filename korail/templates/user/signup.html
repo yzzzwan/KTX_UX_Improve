@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user/signup.css' %}">
+</head>
+<body>
+  <div class="navbar">
+  <div class="logo"><a >Let's Korail</a></div>
+  </div>
+
+  <nav>
+  <a href="/" class="head_menu">홈</a>
+  <a href="#" class="head_menu">혜택</a>
+  <a href="#" class="head_menu">나의 티켓</a>
+  </nav>
+  <!-- ################################################################################### -->
+
+  <!-- 상단 네비게이션 -->
+
+
+  <!-- 로그인 폼 -->
+  <div class="form-container">
+    <!-- 네비게이션 탭 (form-container 내부로 이동) -->
+    <nav class="tab-menu">회원가입</nav>
+
+    <!-- 회원번호 로그인 폼 -->
+    <div class="form-container2">
+      <form method="POST">
+        {% csrf_token %}
+
+        <div class="input-group">
+          <label for="{{ signupForm.username.id_for_label }}">사용자 이름</label>
+            {{ signupForm.username }}
+            {% for error in signupForm.username.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="input-group">
+          <label for="{{ signupForm.password1.id_for_label }}">비밀번호</label>
+            {{ signupForm.password1 }}
+            {% for error in signupForm.password1.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="input-group">
+          <label for="{{ signupForm.password2.id_for_label }}">비밀번호 확인</label>
+            {{ signupForm.password2 }}
+            {% for error in signupForm.password2.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">회원가입</button>
+
+      </form>
+    </div>  <!-- 회원번호 로그인 폼 end -->
+
+
+    <!-- 비회원 버튼 -->
+
+  </div>
+
+  <!-- 비회원 발권 안내문 모달 -->
+  <div id="guest-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>비회원 발권 안내문</h2>
+      </div>
+      <div class="modal-body">
+        <p><b>미등록 고객은 마일리지 적립, 할인상품 등 다양한 혜택을 받으실 수 없습니다.</b></p>
+        <p>미등록 고객은 승차권 예약 서비스를 이용할 때 일부 제한이 있습니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary">비회원으로 계속</button>
+        <button class="btn btn-tertiary close-modal">회원가입으로 돌아가기</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- JS 파일 링크 -->
+    {% load static %}
+  <script src="{% static 'user/signup.js' %}"></script>
+
+</body>
+</html>
